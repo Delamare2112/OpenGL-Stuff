@@ -13,11 +13,19 @@ glslImporter::glslImporter(const std::string& s)
 	: glslData(Import(s))
 { }
 
+// Why does this almost always fail?
 const char* glslImporter::Import(const std::string& path)
 {
+	// std::ifstream ifile(path, std::ios::in);
+	// std::ostringstream glsl;
+	// glsl << ifile.rdbuf();
+	// std::cout << "returning: \n" << glsl.str().c_str() <<'\n';
+	// return glsl.str().c_str();
+
 	std::string data;
 	std::ifstream ifile(path, std::ios::in);
 	data.assign(std::istreambuf_iterator<char>(ifile), std::istreambuf_iterator<char>());
+	// std::cout << "returning: \n" << data.c_str() <<'\n';
 	return data.c_str();
 }
 
