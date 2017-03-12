@@ -1,7 +1,9 @@
 #include "Game.hpp"
+#include "Entity.hpp"
 #include <iostream>
 #include <cassert>
 #include "BackgroundColorChanger.hpp"
+#include "Triangle.hpp"
 
 void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
@@ -16,7 +18,8 @@ int main()
 
 	glfwSetKeyCallback(Game::GetWindow(), KeyCallback);
 
-	BackgroundColorChanger bcc;
+	new Triangle;
+	new BackgroundColorChanger;
 
 	// Game loop
 	while(!glfwWindowShouldClose(Game::GetWindow()))
@@ -28,8 +31,8 @@ int main()
 
 		glfwSwapBuffers(Game::GetWindow());
 	}
+	Game::Exit();
 
-	glfwTerminate();
 	std::cout << "Byebye!" << std::endl;
 	return 0;
 }

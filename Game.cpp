@@ -1,13 +1,34 @@
 #include "Game.hpp"
+#include "Entity.hpp"
 #include <iostream>
 
 GLFWwindow* Game::window = nullptr;
+GameState Game::state = GameState::stopped;
 std::vector<std::function<void()>> Game::Ticks;
 
 GLFWwindow*const Game::GetWindow() { return window; }
+const GameState Game::GetState() { return state; }
+
+glslImporter::glslImporter(const std::string& s)
+	: glslData(Import(s))
+{ }
+
+const char* glslImporter::Import(const std::string& path)
+{
+	std::string data;
+	std::ifstream ifile(path, std::ios::in);
+	data.assign(std::istreambuf_iterator<char>(ifile), std::istreambuf_iterator<char>());
+	return data.c_str();
+}
+
+glslImporter::operator const char**()
+{
+	return &glslData;
+}
 
 bool Game::Init()
 {
+	state = GameState::initing;
 	// Init GLFW
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -49,4 +70,13 @@ void Game::Tick()
 void Game::SetClearColor(const Color& newColor)
 {
 	glClearColor(newColor.r, newColor.b, newColor.g, newColor.a);
+}
+
+void Game::Exit()
+{
+	state = GameState::closing;
+	for(Entity*& e : Entity::entities)
+		delete e;
+	state = GameState::stopped;
+	glfwTerminate();
 }

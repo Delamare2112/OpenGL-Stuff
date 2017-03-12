@@ -94,6 +94,11 @@ public:
 		}
 	}
 
+	template<typename rT>
+	constexpr rT* Get(size_t index) {
+		return (rT*)array[index];
+	}
+
 private:
 	void ReallocateWithSize(size_t size) {
 		T* a = new T[size];

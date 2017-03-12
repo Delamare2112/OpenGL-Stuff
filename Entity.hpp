@@ -9,6 +9,7 @@ private:
 protected:
 	Entity(bool shouldTick=false);
 public:
+	virtual ~Entity();
 	static PackedDynamicArray<Entity*> entities;
 	virtual void Tick() = 0;
 };
