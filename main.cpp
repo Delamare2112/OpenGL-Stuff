@@ -3,23 +3,18 @@
 #include <iostream>
 #include <cassert>
 #include "BackgroundColorChanger.hpp"
-#include "Triangle.hpp"
-
-void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
-{
-	if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, GL_TRUE);
-}
+#include "Rectangle.hpp"
 
 int main()
 {
 	std::cout << "Sanity Check!\n";
 	assert(Game::Init());
 
-	glfwSetKeyCallback(Game::GetWindow(), KeyCallback);
-
-	new Triangle;
+	// new Triangle;
+	new Rectangle;
 	new BackgroundColorChanger;
+
+	std::cout << GL_POINT << " " << GL_LINE << " " << GL_FILL << '\n';
 
 	// Game loop
 	while(!glfwWindowShouldClose(Game::GetWindow()))

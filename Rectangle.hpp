@@ -2,17 +2,19 @@
 
 #include "Entity.hpp"
 
-class Triangle : public Entity
+class Rectangle : public Entity
 {
 private:
+	static GLuint indices[];
 	static GLfloat verts[];
 	GLuint VBO; // OpenGL unsigned int, Vertex Buffer Object
 	GLuint vertexShader;
 	GLuint fragmentShader;
 	GLuint shaderProgram;
 	GLuint VAO;
+	GLuint EBO;
 public:
-	Triangle();
-	~Triangle();
+	Rectangle();
+	~Rectangle();
 	virtual void Tick() override;
 };

@@ -9,6 +9,37 @@ std::vector<std::function<void()>> Game::Ticks;
 GLFWwindow*const Game::GetWindow() { return window; }
 const GameState Game::GetState() { return state; }
 
+const GLchar* Game::vertexShaderSource = &_binary_defaultVertexShader_dat_start;
+const GLchar* Game::fragmentShaderSource = &_binary_defaultFragmentShader_dat_start;
+
+GLuint Game::currentPolyMode = GL_FILL;
+
+void Game::AssertCompileCompleted(GLuint shader)
+{
+	GLint compileStatus;
+	glGetShaderiv(shader, GL_COMPILE_STATUS, &compileStatus);
+	if(!compileStatus)
+	{
+		GLchar infoLog[512];
+		glGetShaderInfoLog(shader, 512, NULL, infoLog);
+		std::cout << "OpenGL Error: Shader Compile Error: " << infoLog << std::endl;
+		glfwSetWindowShouldClose(Game::GetWindow(), GL_TRUE);
+	}
+}
+
+void Game::AssertLinkCompleted(GLuint program)
+{
+	GLint linkStatus;
+	glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
+	if(!linkStatus)
+	{
+		GLchar infoLog[512];
+		glGetProgramInfoLog(program, 512, NULL, infoLog);
+		std::cout << "OpenGL Error: Shader Link Error: " << infoLog << std::endl;
+		glfwSetWindowShouldClose(Game::GetWindow(), GL_TRUE);
+	}
+}
+
 glslImporter::glslImporter(const std::string& s)
 	: glslData(Import(s))
 { }
@@ -66,7 +97,26 @@ bool Game::Init()
 	int width, height;
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
+
+	// other init stuff
+	glfwSetKeyCallback(window, KeyCallback);
+
 	return true;
+}
+
+void Game::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
+{
+	if(action == GLFW_PRESS)
+	{
+		switch(key)
+		{
+		case GLFW_KEY_ESCAPE:
+			glfwSetWindowShouldClose(window, GL_TRUE);break;
+		case GLFW_KEY_F9:
+			currentPolyMode = currentPolyMode >= GL_FILL ? GL_POINT : currentPolyMode+1;
+			glPolygonMode(GL_FRONT_AND_BACK, currentPolyMode);break;
+		}
+	}
 }
 
 void Game::Tick()
