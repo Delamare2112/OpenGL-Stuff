@@ -6,6 +6,7 @@ class Triangle : public Entity
 {
 private:
 	static GLfloat verts[];
+	GLint vertexColorLocation;
 	GLuint VBO; // OpenGL unsigned int, Vertex Buffer Object
 	GLuint vertexShader;
 	GLuint fragmentShader;

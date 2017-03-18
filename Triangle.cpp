@@ -1,4 +1,5 @@
 #include "Triangle.hpp"
+#include <cmath>
 
 GLfloat Triangle::verts[] = {
     -0.5f, -0.5f, 0.0f,
@@ -30,6 +31,9 @@ Triangle::Triangle()
 	glLinkProgram(shaderProgram);
 	Game::AssertLinkCompleted(shaderProgram);
 
+	// Set references to our shader uniforms
+	vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+
 	// Clean (delete objects)
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
@@ -52,10 +56,19 @@ Triangle::Triangle()
 
 void Triangle::Tick()
 {
+	const GLfloat greenValue = (sin(glfwGetTime()) / 2) + 0.5;
+
 	// Use our program
 	glUseProgram(shaderProgram);
+
+	// Do some fancy shader things
+	glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+
+	//Draw
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
+
+	// End
 	glBindVertexArray(0); // Make sure we don't mistakenly use our VAO elsewhere
 }
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cassert>
 #include "BackgroundColorChanger.hpp"
+#include "Triangle.hpp"
 #include "Rectangle.hpp"
 
 int main()
@@ -10,11 +11,9 @@ int main()
 	std::cout << "Sanity Check!\n";
 	assert(Game::Init());
 
-	// new Triangle;
-	new Rectangle;
-	new BackgroundColorChanger;
-
-	std::cout << GL_POINT << " " << GL_LINE << " " << GL_FILL << '\n';
+	new Triangle;
+	// new Rectangle;
+	// new BackgroundColorChanger;
 
 	// Game loop
 	while(!glfwWindowShouldClose(Game::GetWindow()))

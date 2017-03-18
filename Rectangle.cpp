@@ -12,32 +12,6 @@ GLuint Rectangle::indices[] = {  // Note that we start from 0!
     1, 2, 3    // Second Triangle
 };
 
-void AssertCompileCompleted(GLuint shader)
-{
-	GLint compileStatus;
-	glGetShaderiv(shader, GL_COMPILE_STATUS, &compileStatus);
-	if(!compileStatus)
-	{
-		GLchar infoLog[512];
-		glGetShaderInfoLog(shader, 512, NULL, infoLog);
-		std::cout << "OpenGL Error: Shader Compile Error: " << infoLog << std::endl;
-		glfwSetWindowShouldClose(Game::GetWindow(), GL_TRUE);
-	}
-}
-
-void AssertLinkCompleted(GLuint program)
-{
-	GLint linkStatus;
-	glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
-	if(!linkStatus)
-	{
-		GLchar infoLog[512];
-		glGetProgramInfoLog(program, 512, NULL, infoLog);
-		std::cout << "OpenGL Error: Shader Link Error: " << infoLog << std::endl;
-		glfwSetWindowShouldClose(Game::GetWindow(), GL_TRUE);
-	}
-}
-
 Rectangle::Rectangle()
 	: Entity(true)
 {
