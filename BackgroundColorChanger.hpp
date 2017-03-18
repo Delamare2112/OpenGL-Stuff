@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entity.hpp"
+#include "Engine/Entity.hpp"
 
 class BackgroundColorChanger : public Entity
 {

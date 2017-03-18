@@ -1,5 +1,5 @@
-#include "Game.hpp"
-#include "Entity.hpp"
+#include "Engine/Game.hpp"
+#include "Engine/Entity.hpp"
 #include <iostream>
 #include <cassert>
 #include "BackgroundColorChanger.hpp"
