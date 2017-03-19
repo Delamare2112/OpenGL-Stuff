@@ -9,61 +9,7 @@ std::vector<std::function<void()>> Game::Ticks;
 GLFWwindow*const Game::GetWindow() { return window; }
 const GameState Game::GetState() { return state; }
 
-const GLchar* Game::vertexShaderSource = &_binary_defaultVertexShader_dat_start;
-const GLchar* Game::fragmentShaderSource = &_binary_defaultFragmentShader_dat_start;
-
 GLuint Game::currentPolyMode = GL_FILL;
-
-void Game::AssertCompileCompleted(GLuint shader)
-{
-	GLint compileStatus;
-	glGetShaderiv(shader, GL_COMPILE_STATUS, &compileStatus);
-	if(!compileStatus)
-	{
-		GLchar infoLog[512];
-		glGetShaderInfoLog(shader, 512, NULL, infoLog);
-		std::cout << "OpenGL Error: Shader Compile Error: " << infoLog << std::endl;
-		glfwSetWindowShouldClose(Game::GetWindow(), GL_TRUE);
-	}
-}
-
-void Game::AssertLinkCompleted(GLuint program)
-{
-	GLint linkStatus;
-	glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
-	if(!linkStatus)
-	{
-		GLchar infoLog[512];
-		glGetProgramInfoLog(program, 512, NULL, infoLog);
-		std::cout << "OpenGL Error: Shader Link Error: " << infoLog << std::endl;
-		glfwSetWindowShouldClose(Game::GetWindow(), GL_TRUE);
-	}
-}
-
-glslImporter::glslImporter(const std::string& s)
-	: glslData(Import(s))
-{ }
-
-// Why does this almost always fail?
-const char* glslImporter::Import(const std::string& path)
-{
-	// std::ifstream ifile(path, std::ios::in);
-	// std::ostringstream glsl;
-	// glsl << ifile.rdbuf();
-	// std::cout << "returning: \n" << glsl.str().c_str() <<'\n';
-	// return glsl.str().c_str();
-
-	std::string data;
-	std::ifstream ifile(path, std::ios::in);
-	data.assign(std::istreambuf_iterator<char>(ifile), std::istreambuf_iterator<char>());
-	// std::cout << "returning: \n" << data.c_str() <<'\n';
-	return data.c_str();
-}
-
-glslImporter::operator const char**()
-{
-	return &glslData;
-}
 
 bool Game::Init()
 {

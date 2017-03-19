@@ -2,41 +2,18 @@
 #include <cmath>
 
 GLfloat Triangle::verts[] = {
-    -0.5f, -0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-     0.0f,  0.5f, 0.0f
-};
+    // Positions         // Colors
+     0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // Bottom Right
+    -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // Bottom Left
+     0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // Top 
+};    
 
 Triangle::Triangle()
-	: Entity(true)
+	: Entity(true),
+	shader("Engine/coloredVertexShader.glsl", "Engine/coloredFragmentShader.glsl")
 {
-	// Vertex Shader
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, /*glslImporter("defaultVertexShader.vs")*/&Game::vertexShaderSource, NULL);
-	std::cout << "compiling vertex shader\n";
-	glCompileShader(vertexShader);
-	Game::AssertCompileCompleted(vertexShader);
-
-	// Fragement shader
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, /*glslImporter("defaultFragmentShader.vs")*/&Game::fragmentShaderSource, NULL);
-	std::cout << "compiling fragment shader\n";
-	glCompileShader(fragmentShader);
-	Game::AssertCompileCompleted(fragmentShader);
-
-	// Linkage
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	Game::AssertLinkCompleted(shaderProgram);
-
 	// Set references to our shader uniforms
-	vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-
-	// Clean (delete objects)
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+	// vertexColorLocation = glGetUniformLocation(shader.GetProgram(), "ourColor");
 
 	// Vertex Array Object
 	glGenVertexArrays(1, &VAO);
@@ -48,8 +25,12 @@ Triangle::Triangle()
 		glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW); // copy our verts to GPU memory (our VBO)
 
 		// Set attributes
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+		// Position
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
 		glEnableVertexAttribArray(0);
+		// Color
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3* sizeof(GLfloat)));
+		glEnableVertexAttribArray(1);
 
 	glBindVertexArray(0);
 }
@@ -59,10 +40,10 @@ void Triangle::Tick()
 	const GLfloat greenValue = (sin(glfwGetTime()) / 2) + 0.5;
 
 	// Use our program
-	glUseProgram(shaderProgram);
+	glUseProgram(shader.GetProgram());
 
 	// Do some fancy shader things
-	glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+	// glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
 	//Draw
 	glBindVertexArray(VAO);

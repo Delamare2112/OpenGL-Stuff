@@ -13,33 +13,9 @@ GLuint Rectangle::indices[] = {  // Note that we start from 0!
 };
 
 Rectangle::Rectangle()
-	: Entity(true)
+	: Entity(true),
+	shader("Engine/defaultVertexShader.glsl", "Engine/defaultFragmentShader.glsl")
 {
-	// Vertex Shader
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, /*glslImporter("defaultVertexShader.vs")*/&Game::vertexShaderSource, NULL);
-	std::cout << "compiling vertex shader\n";
-	glCompileShader(vertexShader);
-	Game::AssertCompileCompleted(vertexShader);
-
-	// Fragement shader
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, /*glslImporter("defaultFragmentShader.vs")*/&Game::fragmentShaderSource, NULL);
-	std::cout << "compiling fragment shader\n";
-	glCompileShader(fragmentShader);
-	Game::AssertCompileCompleted(fragmentShader);
-
-	// Linkage
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	Game::AssertLinkCompleted(shaderProgram);
-
-	// Clean (delete objects)
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-
 	// Vertex Array Object
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
@@ -64,7 +40,7 @@ Rectangle::Rectangle()
 void Rectangle::Tick()
 {
 	// Use our program
-	glUseProgram(shaderProgram);
+	glUseProgram(shader.GetProgram());
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0); // Make sure we don't mistakenly use our VAO elsewhere
