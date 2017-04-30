@@ -11,9 +11,9 @@ int main()
 	std::cout << "Sanity Check!\n";
 	assert(Game::Init());
 
-	new Triangle;
-	// new Rectangle;
-	// new BackgroundColorChanger;
+	new Rectangle;
+//	new Triangle;
+//	new BackgroundColorChanger;
 
 	// Game loop
 	while(!glfwWindowShouldClose(Game::GetWindow()))

@@ -21,6 +21,6 @@ set(SOURCE_FILES
         Triangle.cpp
         Triangle.hpp)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lGLEW -lglfw -lGL -lX11 -lpthread -lXrandr -lXi")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lGLEW -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -lSOIL")
 
 add_executable(HelloWindow ${SOURCE_FILES})

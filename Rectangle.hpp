@@ -12,6 +12,8 @@ private:
 	GLuint VBO; // OpenGL unsigned int, Vertex Buffer Object
 	GLuint VAO;
 	GLuint EBO;
+	GLuint texture1;
+	GLuint texture2;
 public:
 	Rectangle();
 	~Rectangle();
