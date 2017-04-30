@@ -1,3 +1,5 @@
 *.o
 *.dat
 program
+.idea
+cmake-build-debug
