@@ -1,6 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <SOIL/SOIL.h>
 // #include <experimental/filesystem> // One day...
 #include "Shader.hpp"
 #include "Game.hpp"
@@ -72,6 +73,36 @@ GLuint Shader::CompileAndAttachShader(GLuint shaderType, const GLchar* source)
 	return shader;
 }
 
+void Shader::AddTexture(const GLchar* imagePath, const GLchar* uniformString)
+{
+	textures.emplace_back(0, uniformString);
+	std::pair<GLuint, const GLchar*>& texture = textures.back();
+	// Texture
+	glGenTextures(1, &texture.first);
+	glBindTexture(GL_TEXTURE_2D, texture.first);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// Set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	int width, height;
+	unsigned char* image = SOIL_load_image(imagePath, &width, &height, 0, SOIL_LOAD_RGB);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(image);
+	glBindTexture(GL_TEXTURE_2D, 0); // unbind
+}
+
+void Shader::ActivateTextures() const
+{
+	for(GLenum i=0; i < textures.size(); i++)
+	{
+		glActiveTexture(GL_TEXTURE0+i);
+		glBindTexture(GL_TEXTURE_2D, textures[i].first);
+		glUniform1i(glGetUniformLocation(program, textures[i].second), i);
+	}
+}
+
 const GLuint Shader::GetProgram() const
 {
 	return program;
@@ -80,4 +111,5 @@ const GLuint Shader::GetProgram() const
 void Shader::Use() const
 {
 	glUseProgram(program);
+	ActivateTextures();
 }
