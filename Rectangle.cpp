@@ -1,4 +1,7 @@
 #include "Rectangle.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 GLfloat Rectangle::verts[] = {
 		// Positions          // Colors           // Texture Coords
@@ -49,6 +52,13 @@ void Rectangle::Tick()
 {
 	// Use our program
 	shader.Use();
+
+	glm::mat4 trans;
+	trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
+	trans = glm::rotate(trans,(GLfloat)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+
+	GLint transformLoc = glGetUniformLocation(shader.GetProgram(), "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

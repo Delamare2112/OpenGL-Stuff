@@ -15,6 +15,8 @@ int main()
 //	new Triangle;
 //	new BackgroundColorChanger;
 
+	Game::SetClearColor({0.2f, 0.3f, 0.3f, 1.f});
+
 	// Game loop
 	while(!glfwWindowShouldClose(Game::GetWindow()))
 	{
