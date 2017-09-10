@@ -15,7 +15,6 @@ cmake --build . --target all -- -j8
 For now the binary expects to be ran from the root directory.
 ```bash
 cd ..
-./build/
 ./build/HelloWindow
 ```
 
