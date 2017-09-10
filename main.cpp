@@ -14,6 +14,8 @@ int main()
 	new Rectangle;
 //	new Triangle;
 //	new BackgroundColorChanger;
+//	Rectangle* otherRect = new Rectangle;
+//	otherRect->position =
 
 	Game::SetClearColor({0.2f, 0.3f, 0.3f, 1.f});
 

@@ -26,9 +26,11 @@ private:
 	Game() {}
 	static GLFWwindow* window;
 	static GameState state;
+	static GLfloat previousTime;
 
 public:
 	static GLuint currentPolyMode;
+	static GLfloat deltaTime;
 	static void AssertCompileCompleted(GLuint shader);
 	static void AssertLinkCompleted(GLuint program);
 

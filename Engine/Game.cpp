@@ -10,6 +10,8 @@ GLFWwindow*const Game::GetWindow() { return window; }
 const GameState Game::GetState() { return state; }
 
 GLuint Game::currentPolyMode = GL_FILL;
+GLfloat Game::previousTime = 0;
+GLfloat Game::deltaTime = 0;
 
 bool Game::Init()
 {
@@ -67,6 +69,9 @@ void Game::KeyCallback(GLFWwindow* window, int key, int scancode, int action, in
 
 void Game::Tick()
 {
+	const float time = (float)glfwGetTime();
+	deltaTime = time - previousTime;
+	previousTime = time;
 	for(auto t : Ticks)
 		t();
 }

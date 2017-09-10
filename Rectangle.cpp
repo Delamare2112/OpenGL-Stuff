@@ -1,6 +1,5 @@
 #include "Rectangle.hpp"
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 GLfloat Rectangle::verts[] = {
@@ -46,6 +45,7 @@ Rectangle::Rectangle()
 		glEnableVertexAttribArray(2);
 
 	glBindVertexArray(0);
+	trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
 }
 
 void Rectangle::Tick()
@@ -53,9 +53,8 @@ void Rectangle::Tick()
 	// Use our program
 	shader.Use();
 
-	glm::mat4 trans;
-	trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
-	trans = glm::rotate(trans,(GLfloat)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	trans = glm::rotate(trans, Game::deltaTime * glm::radians(50.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	std::cout << Game::deltaTime << std::endl;
 
 	GLint transformLoc = glGetUniformLocation(shader.GetProgram(), "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
