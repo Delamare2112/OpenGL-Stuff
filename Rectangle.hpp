@@ -12,10 +12,18 @@ private:
 	GLuint VBO; // OpenGL unsigned int, Vertex Buffer Object
 	GLuint VAO;
 	GLuint EBO;
+
+
+	glm::mat4 projection;
+	glm::mat4 view;
+	int viewLoc;
+	int modelLoc;
+	int projectionLoc;
+
 public:
 	Rectangle();
 	~Rectangle();
-	glm::mat4 trans;
+	glm::mat4 model;
 	Shader* shader;
 	virtual void Tick() override;
 };

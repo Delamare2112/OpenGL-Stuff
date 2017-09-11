@@ -25,7 +25,7 @@ bool Game::Init()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Make GLFW make our window for us
-	window = glfwCreateWindow(800, 600, "Learnin OpenGL", nullptr, nullptr);
+	window = glfwCreateWindow(800, 600, "Trev Engine v0.0.8", nullptr, nullptr);
 	if(window == nullptr)
 	{
 		std::cout << "Failed to create GLFW window!!!\n";
@@ -49,6 +49,8 @@ bool Game::Init()
 
 	// other init stuff
 	glfwSetKeyCallback(window, KeyCallback);
+
+	glEnable(GL_DEPTH_TEST);
 
 	return true;
 }
