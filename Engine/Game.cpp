@@ -5,6 +5,7 @@
 GLFWwindow* Game::window = nullptr;
 GameState Game::state = GameState::stopped;
 std::vector<std::function<void()>> Game::Ticks;
+std::unordered_map<std::string, Shader> Game::shaderLibrary;
 
 GLFWwindow*const Game::GetWindow() { return window; }
 const GameState Game::GetState() { return state; }

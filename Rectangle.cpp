@@ -16,12 +16,8 @@ GLuint Rectangle::indices[] = {  // Note that we start from 0!
 };
 
 Rectangle::Rectangle()
-	: Entity(true),
-	shader("Engine/texVertex.glsl", "Engine/texFragment.glsl")
+	: Entity(true)
 {
-	shader.AddTexture("container.jpg", "ourTexture1");
-	shader.AddTexture("awesomeface.png", "ourTexture2");
-
 	// Vertex Array Object
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
@@ -51,12 +47,11 @@ Rectangle::Rectangle()
 void Rectangle::Tick()
 {
 	// Use our program
-	shader.Use();
+	shader->Use();
 
 	trans = glm::rotate(trans, Game::deltaTime * glm::radians(50.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	std::cout << Game::deltaTime << std::endl;
 
-	GLint transformLoc = glGetUniformLocation(shader.GetProgram(), "transform");
+	GLint transformLoc = glGetUniformLocation(shader->GetProgram(), "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
 	glBindVertexArray(VAO);

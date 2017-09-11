@@ -5,6 +5,8 @@
 #include <functional>
 #include <string>
 #include <fstream>
+#include <unordered_map>
+#include "Shader.hpp"
 
 struct Color
 {
@@ -35,6 +37,7 @@ public:
 	static void AssertLinkCompleted(GLuint program);
 
 	static std::vector<std::function<void()>> Ticks;
+	static std::unordered_map<std::string, Shader> shaderLibrary;
 
 	static GLFWwindow*const GetWindow();
 	static const GameState GetState();

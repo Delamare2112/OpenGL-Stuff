@@ -11,11 +11,16 @@ int main()
 	std::cout << "Sanity Check!\n";
 	assert(Game::Init());
 
-	new Rectangle;
-//	new Triangle;
-//	new BackgroundColorChanger;
-//	Rectangle* otherRect = new Rectangle;
-//	otherRect->position =
+	Shader& happyColors = Game::shaderLibrary["HappyColors"];
+	happyColors.Create("Engine/texVertex.glsl", "Engine/texFragment.glsl");
+	happyColors.AddTexture("container.jpg", "ourTexture1");
+	happyColors.AddTexture("awesomeface.png", "ourTexture2");
+
+	Rectangle* rect = new Rectangle;
+	rect->shader = &happyColors;
+	rect = new Rectangle;
+	rect->shader = &happyColors;
+	rect->trans = glm::translate(rect->trans, glm::vec3(-1.f, 1.f, 0.0f));
 
 	Game::SetClearColor({0.2f, 0.3f, 0.3f, 1.f});
 
