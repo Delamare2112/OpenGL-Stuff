@@ -22,11 +22,6 @@ void Camera::SetFOV(const float& newFOV)
 	projection = glm::perspective(FOV, 800.f/600.f, 0.01f, 100.f);
 }
 
-glm::vec3* Camera::getPositionReference()
-{
-	return &position;
-}
-
 const glm::vec3& Camera::getPosition() const
 {
 	return position;

@@ -63,7 +63,7 @@ int main()
 
 	Game::SetClearColor({0.2f, 0.3f, 0.3f, 1.f});
 
-	glm::vec3* camPos = Camera::currentCamera->getPositionReference();
+	glm::vec3 camPos = Camera::currentCamera->getPosition();
 
 	glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 cameraDirection = glm::normalize(Camera::currentCamera->getPosition() - cameraTarget);
@@ -80,14 +80,14 @@ int main()
 		float cameraSpeed = 2.5 * Game::deltaTime; // adjust accordingly
 
 		if (glfwGetKey(Game::GetWindow(), GLFW_KEY_W) == GLFW_PRESS)
-			*camPos -= cameraSpeed * cameraFront;
+			camPos -= cameraSpeed * cameraFront;
 		if (glfwGetKey(Game::GetWindow(), GLFW_KEY_S) == GLFW_PRESS)
-			*camPos += cameraSpeed * cameraFront;
+			camPos += cameraSpeed * cameraFront;
 		if (glfwGetKey(Game::GetWindow(), GLFW_KEY_A) == GLFW_PRESS)
-			*camPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+			camPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 		if (glfwGetKey(Game::GetWindow(), GLFW_KEY_D) == GLFW_PRESS)
-			*camPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-		Camera::currentCamera->SetPosition(*camPos);
+			camPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		Camera::currentCamera->SetPosition(camPos);
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear buffer and fill with ClearColor
 		Game::Tick();

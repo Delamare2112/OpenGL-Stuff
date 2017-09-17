@@ -18,8 +18,6 @@ public:
 
 	void SetPosition(const glm::vec3 newPosition);
 	void SetFOV(const float& newFOV);
-	glm::vec3* getPositionReference(); // Only use when PLANNING to not modify the view upon modification.
-		// TODO: make position public once we have separate render tick and can make sure camera is first to be called.
 
 	const glm::vec3& getPosition() const;
 	const glm::mat4& getProjection() const;
