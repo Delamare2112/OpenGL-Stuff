@@ -12,13 +12,18 @@ Camera::Camera()
 void Camera::SetPosition(const glm::vec3 newPosition)
 {
 	position = newPosition;
-	view = glm::translate(view, newPosition);
+	view = glm::translate(view, position);
 }
 
 void Camera::SetFOV(const float& newFOV)
 {
 	FOV = newFOV;
 	projection = glm::perspective(FOV, 800.f/600.f, 0.01f, 100.f);
+}
+
+const glm::vec3& Camera::getPosition() const
+{
+	return position;
 }
 
 const glm::mat4 &Camera::getProjection() const

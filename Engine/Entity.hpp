@@ -3,11 +3,6 @@
 #include "Component.hpp"
 #include "Game.hpp"
 
-struct Position
-{
-	float x, y, z;
-};
-
 class Entity
 {
 private:
@@ -16,7 +11,7 @@ private:
 protected:
 	Entity(bool shouldTick=false);
 public:
-	Position position;
+	glm::vec3 position;
 
 	virtual ~Entity();
 	static PackedDynamicArray<Entity*> entities;

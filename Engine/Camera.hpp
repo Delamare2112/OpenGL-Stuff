@@ -8,9 +8,10 @@ private:
 	float FOV;
 	glm::vec3 position;
 	glm::mat4 projection;
-	glm::mat4 view;
 
 public:
+	glm::mat4 view;
+
 	Camera();
 
 	static Camera* currentCamera;
@@ -19,6 +20,7 @@ public:
 
 	void SetFOV(const float& newFOV);
 
+	const glm::vec3& getPosition() const;
 	const glm::mat4& getProjection() const;
 	const glm::mat4& getView() const;
 };
