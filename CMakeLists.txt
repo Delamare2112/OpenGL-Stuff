@@ -19,7 +19,7 @@ set(SOURCE_FILES
         Rectangle.cpp
         Rectangle.hpp
         Triangle.cpp
-        Triangle.hpp)
+        Triangle.hpp MainCamera.cpp MainCamera.hpp Engine/Camera.cpp Engine/Camera.hpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lGLEW -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -lSOIL")
 

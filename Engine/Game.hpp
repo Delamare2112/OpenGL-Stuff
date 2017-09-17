@@ -7,6 +7,7 @@
 #include <fstream>
 #include <unordered_map>
 #include "Shader.hpp"
+#include "Camera.hpp"
 
 struct Color
 {
@@ -33,8 +34,6 @@ private:
 public:
 	static GLuint currentPolyMode;
 	static GLfloat deltaTime;
-	static void AssertCompileCompleted(GLuint shader);
-	static void AssertLinkCompleted(GLuint program);
 
 	static std::vector<std::function<void()>> Ticks;
 	static std::unordered_map<std::string, Shader> shaderLibrary;

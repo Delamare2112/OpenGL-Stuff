@@ -5,6 +5,7 @@
 #include "BackgroundColorChanger.hpp"
 #include "Triangle.hpp"
 #include "Rectangle.hpp"
+#include "MainCamera.hpp"
 
 int main()
 {
@@ -57,6 +58,8 @@ int main()
 	rect->shader = &happyColors;
 	rect->model = glm::translate(rect->model, glm::vec3(-1.3f,  1.0f, -1.5f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
+
+	new MainCamera();
 
 	Game::SetClearColor({0.2f, 0.3f, 0.3f, 1.f});
 

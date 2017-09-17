@@ -14,8 +14,6 @@ private:
 	GLuint EBO;
 
 
-	glm::mat4 projection;
-	glm::mat4 view;
 	int viewLoc;
 	int modelLoc;
 	int projectionLoc;
