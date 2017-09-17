@@ -77,7 +77,7 @@ int main()
 	{
 		glfwPollEvents();
 
-		float cameraSpeed = 0.05f; // adjust accordingly
+		float cameraSpeed = 2.5 * Game::deltaTime; // adjust accordingly
 
 		if (glfwGetKey(Game::GetWindow(), GLFW_KEY_W) == GLFW_PRESS)
 			*camPos -= cameraSpeed * cameraFront;
