@@ -1,8 +1,11 @@
 #include "Component.hpp"
-#include "Game.hpp"
+#include "Entity.hpp"
 
-Component::Component(bool shouldTick)
+Component::Component(Entity* owner, bool shouldTick)
 {
+    this->owner = owner;
 	if(shouldTick)
-		Game::Ticks.push_back([&]{this->Tick();});
+		Game::Ticks.emplace_back([&]{this->Tick();});
 }
+
+void Component::Tick() {}

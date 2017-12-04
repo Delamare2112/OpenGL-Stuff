@@ -2,6 +2,7 @@
 #include "PackedDynamicArray.hpp"
 #include "Component.hpp"
 #include "Game.hpp"
+#include "Transform.hpp"
 
 class Entity
 {
@@ -10,8 +11,9 @@ private:
 	std::vector<Component*> components;
 protected:
 	Entity(bool shouldTick=false);
+    Entity(Transform* nondefaultTransform, bool shouldTick=false);
 public:
-	glm::vec3 position;
+	Transform* transform;
 
 	virtual ~Entity();
 	static PackedDynamicArray<Entity*> entities;
@@ -32,7 +34,7 @@ public:
 	T* AddComponent()
 	{
 		// v C++17 feature
-		/*return*/ components.emplace_back(new T);
-		return components.back(); // remove in C++17
+		/*return*/ components.emplace_back(new T(this));
+		return (T*)components.back(); // remove in C++17
 	}
 };

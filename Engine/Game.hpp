@@ -7,7 +7,6 @@
 #include <fstream>
 #include <unordered_map>
 #include "Shader.hpp"
-#include "Camera.hpp"
 
 struct Color
 {

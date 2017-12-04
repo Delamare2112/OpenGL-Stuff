@@ -5,7 +5,7 @@
 #include "BackgroundColorChanger.hpp"
 #include "Triangle.hpp"
 #include "Rectangle.hpp"
-#include "MainCamera.hpp"
+#include "Engine/Camera.hpp"
 
 int main()
 {
@@ -18,7 +18,7 @@ int main()
 	happyBox.AddTexture("awesomeface.png", "ourTexture2");
 
 	unsigned int i = 0;
-	Rectangle* rect = new Rectangle;
+	auto* rect = new Rectangle;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3( 0.0f,  0.0f,  0.0f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
@@ -57,25 +57,25 @@ int main()
 	rect = new Rectangle;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3(-1.3f,  1.0f, -1.5f));
-	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
+	rect->model = glm::rotate(rect->model, glm::radians(20.f * i), glm::vec3(1.f, 0.3f, 0.5f));
 
-	new MainCamera();
+	new Camera();
 
 	Game::SetClearColor({0.2f, 0.3f, 0.3f, 1.f});
 
-	glm::vec3 camPos = Camera::currentCamera->getPosition();
-
-	glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-	glm::vec3 cameraDirection = glm::normalize(Camera::currentCamera->getPosition() - cameraTarget);
-	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-	glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
-	glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
-	glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+	const glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+    const glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+    const glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
 
 	// Game loop
 	while(!glfwWindowShouldClose(Game::GetWindow()))
 	{
 		glfwPollEvents();
+
+        glm::vec3 camPos = Camera::currentCamera->transform->GetPosition();
+        glm::vec3 cameraDirection = glm::normalize(camPos - cameraTarget);
+        glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
+        glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
 
 		float cameraSpeed = 2.5 * Game::deltaTime; // adjust accordingly
 
@@ -87,7 +87,7 @@ int main()
 			camPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 		if (glfwGetKey(Game::GetWindow(), GLFW_KEY_D) == GLFW_PRESS)
 			camPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-		Camera::currentCamera->SetPosition(camPos);
+		Camera::currentCamera->transform->SetPosition(camPos);
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear buffer and fill with ClearColor
 		Game::Tick();
