@@ -4,7 +4,7 @@
 #include <cassert>
 #include "BackgroundColorChanger.hpp"
 #include "Triangle.hpp"
-#include "Rectangle.hpp"
+#include "Cube.hpp"
 #include "Engine/Camera.hpp"
 
 int main()
@@ -18,48 +18,48 @@ int main()
 	happyBox.AddTexture("awesomeface.png", "ourTexture2");
 
 	unsigned int i = 0;
-	auto* rect = new Rectangle;
+	auto* rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3( 0.0f,  0.0f,  0.0f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
-	rect = new Rectangle;
+	rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3( 2.0f,  5.0f, -15.0f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
-	rect = new Rectangle;
+	rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3(-1.5f, -2.2f, -2.5f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
-	rect = new Rectangle;
+	rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3(-3.8f, -2.0f, -12.3f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
-	rect = new Rectangle;
+	rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3( 2.4f, -0.4f, -3.5f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
-	rect = new Rectangle;
+	rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3(-1.7f,  3.0f, -7.5f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
-	rect = new Rectangle;
+	rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3( 1.3f, -2.0f, -2.5f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
-	rect = new Rectangle;
+	rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3( 1.5f,  2.0f, -2.5f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
-	rect = new Rectangle;
+	rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3( 1.5f,  0.2f, -1.5f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i++), glm::vec3(1.f, 0.3f, 0.5f));
-	rect = new Rectangle;
+	rect = new Cube;
 	rect->shader = &happyBox;
 	rect->model = glm::translate(rect->model, glm::vec3(-1.3f,  1.0f, -1.5f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i), glm::vec3(1.f, 0.3f, 0.5f));
 
-	new Camera();
+    (new Camera())->transform->SetPosition(glm::vec3(0.f, 0.f, -3.f));
 
 	Game::SetClearColor({0.2f, 0.3f, 0.3f, 1.f});
 

@@ -1,9 +1,9 @@
-#include "Rectangle.hpp"
+#include "Cube.hpp"
 #include "Engine/Camera.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-GLfloat Rectangle::verts[] = {
+GLfloat Cube::verts[] = {
 		// positions		// texture cords
 		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 		0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -48,12 +48,12 @@ GLfloat Rectangle::verts[] = {
 		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 };
 
-GLuint Rectangle::indices[] = {  // Note that we start from 0!
+GLuint Cube::indices[] = {  // Note that we start from 0!
     0, 1, 3,   // First Triangle
     1, 2, 3    // Second Triangle
 };
 
-Rectangle::Rectangle()
+Cube::Cube()
 	: Entity(true)
 {
 	// Vertex Array Object
@@ -79,7 +79,7 @@ Rectangle::Rectangle()
 	glBindVertexArray(0);
 }
 
-void Rectangle::Tick()
+void Cube::Tick()
 {
 	// Use our program
 	shader->Use();
@@ -102,7 +102,7 @@ void Rectangle::Tick()
 	glBindVertexArray(0); // Make sure we don't mistakenly use our VAO elsewhere
 }
 
-Rectangle::~Rectangle()
+Cube::~Cube()
 {
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);

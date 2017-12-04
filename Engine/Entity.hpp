@@ -33,8 +33,6 @@ public:
 	template<class T>
 	T* AddComponent()
 	{
-		// v C++17 feature
-		/*return*/ components.emplace_back(new T(this));
-		return (T*)components.back(); // remove in C++17
+		return components.emplace_back(new T(this));
 	}
 };

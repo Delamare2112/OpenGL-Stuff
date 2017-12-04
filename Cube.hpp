@@ -4,7 +4,7 @@
 #include "Engine/Shader.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 
-class Rectangle : public Entity
+class Cube : public Entity
 {
 private:
 	static GLuint indices[];
@@ -19,9 +19,9 @@ private:
 	int projectionLoc;
 
 public:
-	Rectangle();
-	~Rectangle();
+	Cube();
+	virtual ~Cube();
 	glm::mat4 model;
 	Shader* shader;
-	virtual void Tick() override;
+	void Tick() override;
 };

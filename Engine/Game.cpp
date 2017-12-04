@@ -87,8 +87,9 @@ void Game::SetClearColor(const Color& newColor)
 void Game::Exit()
 {
 	state = GameState::closing;
-	for(Entity*& e : Entity::entities)
+	for(Entity*& e : Entity::entities) {
 		delete e;
+	}
 	state = GameState::stopped;
 	glfwTerminate();
 }
