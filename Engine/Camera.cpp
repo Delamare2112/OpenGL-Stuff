@@ -5,7 +5,7 @@ Camera* Camera::currentCamera = nullptr;
 
 Camera::Camera()
 {
-    transform = new CameraTransform(this);
+    transform = new(transform) CameraTransform(this);
 	currentCamera = this;
 	SetFOV(45.f);
     transform->SetPosition(glm::vec3(0, 0, 0));

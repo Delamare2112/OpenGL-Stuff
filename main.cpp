@@ -12,9 +12,9 @@ int main()
 	std::cout << "Sanity Check!\n";
 	assert(Game::Init());
 
-	Shader& happyBox = Game::shaderLibrary["HappyColors"];
-	happyBox.Create("Engine/texVertex.glsl", "Engine/texFragment.glsl");
-	happyBox.AddTexture("container.jpg", "ourTexture1");
+	Shader& happyBox = Game::shaderLibrary["HappyColors"]; // Make new shader called HappyColors
+	happyBox.Create("Engine/texVertex.glsl", "Engine/texFragment.glsl"); // Create the new shader
+	happyBox.AddTexture("container.jpg", "ourTexture1"); // Add some textures
 	happyBox.AddTexture("awesomeface.png", "ourTexture2");
 
 	unsigned int i = 0;

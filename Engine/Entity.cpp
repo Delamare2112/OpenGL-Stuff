@@ -4,7 +4,7 @@ PackedDynamicArray<Entity*> Entity::entities;
 
 Entity::Entity(bool shouldTick)
 {
-	transform = new Transform;
+	transform = new Transform();
 	if(shouldTick)
 		Game::Ticks.emplace_back([&]{this->Tick();});
     entities.Add(this);

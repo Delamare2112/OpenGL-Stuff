@@ -12,7 +12,6 @@ private:
 
 public:
 	glm::mat4 view;
-	Transform* transform;
 
 	explicit Camera();
 
