@@ -13,8 +13,10 @@ const GameState Game::GetState() { return state; }
 GLuint Game::currentPolyMode = GL_FILL;
 GLfloat Game::previousTime = 0;
 GLfloat Game::deltaTime = 0;
+int Game::height = 0;
+int Game::width = 0;
 
-bool Game::Init()
+bool Game::Init(int width, int height)
 {
 	state = GameState::initing;
 	// Init GLFW
@@ -25,7 +27,7 @@ bool Game::Init()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Make GLFW make our window for us
-	window = glfwCreateWindow(800, 600, "Trev Engine v0.0.8p1", nullptr, nullptr);
+	window = glfwCreateWindow(width, height, "Trev Engine v0.0.8p1", nullptr, nullptr);
 	if(window == nullptr)
 	{
 		std::cout << "Failed to create GLFW window!!!\n";
@@ -43,9 +45,10 @@ bool Game::Init()
 	}
 
 	// Viewport setup
-	int width, height;
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
+	Game::width = width;
+	Game::height = height;
 
 	// other init stuff
 	glfwSetKeyCallback(window, KeyCallback);
@@ -72,10 +75,10 @@ void Game::KeyCallback(GLFWwindow* window, int key, int scancode, int action, in
 
 void Game::Tick()
 {
-	const float time = (float)glfwGetTime();
+	const auto time = (float)glfwGetTime();
 	deltaTime = time - previousTime;
 	previousTime = time;
-	for(auto t : Ticks)
+	for(const auto &t : Ticks)
 		t();
 }
 

@@ -12,12 +12,11 @@ private:
 
 public:
 	glm::mat4 view;
+	glm::vec3 front;
 
 	explicit Camera();
 
 	static Camera* currentCamera;
-
-    void Tick() override;
 
 	void UpdatePosition(glm::vec3 newPosition);
 	void SetFOV(const float& newFOV);

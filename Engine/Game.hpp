@@ -33,6 +33,7 @@ private:
 public:
 	static GLuint currentPolyMode;
 	static GLfloat deltaTime;
+	static int width, height;
 
 	static std::vector<std::function<void()>> Ticks;
 	static std::unordered_map<std::string, Shader> shaderLibrary;
@@ -40,7 +41,7 @@ public:
 	static GLFWwindow*const GetWindow();
 	static const GameState GetState();
 
-	static bool Init();
+	static bool Init(int width, int height);
 	static void Tick();
 	static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 	static void SetClearColor(const Color& newColor);

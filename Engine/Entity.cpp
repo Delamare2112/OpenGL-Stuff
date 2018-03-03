@@ -24,3 +24,5 @@ Entity::~Entity()
 		entities.RemoveAt(iid);
 	delete transform;
 }
+
+void Entity::Tick() {}

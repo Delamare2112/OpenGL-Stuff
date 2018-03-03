@@ -17,7 +17,7 @@ public:
 
 	virtual ~Entity();
 	static PackedDynamicArray<Entity*> entities;
-	virtual void Tick() = 0;
+	virtual void Tick();
 
 	template<class T>
 	T* GetComponent()
