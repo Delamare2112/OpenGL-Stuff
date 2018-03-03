@@ -1,9 +1,5 @@
 #include "Engine/Game.hpp"
 #include "Engine/Entity.hpp"
-#include <iostream>
-#include <cassert>
-#include "BackgroundColorChanger.hpp"
-#include "Triangle.hpp"
 #include "Cube.hpp"
 #include "Engine/Camera.hpp"
 #include "FPSInput.h"

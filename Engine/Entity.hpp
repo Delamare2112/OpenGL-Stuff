@@ -10,7 +10,7 @@ private:
 	size_t iid;
 	std::vector<Component*> components;
 protected:
-	Entity(bool shouldTick=false);
+	explicit Entity(bool shouldTick=false);
 public:
 	Transform transform;
 

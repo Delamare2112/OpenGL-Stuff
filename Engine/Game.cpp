@@ -1,6 +1,5 @@
 #include "Game.hpp"
 #include "Entity.hpp"
-#include <iostream>
 
 GLFWwindow* Game::window = nullptr;
 GameState Game::state = GameState::stopped;

@@ -6,11 +6,6 @@
 #include "Shader.hpp"
 #include "Game.hpp"
 
-Shader::Shader()
-{
-
-}
-
 Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath)
 {
 	if (Create(vertexPath, fragmentPath))
@@ -29,7 +24,7 @@ GLuint Shader::CompileAndAttachShader(GLuint shaderType, const GLchar* source)
 	if(!compileStatus)
 	{
 		GLchar infoLog[512];
-		glGetShaderInfoLog(shader, 512, NULL, infoLog);
+		glGetShaderInfoLog(shader, 512, nullptr, infoLog);
 		std::cout << "OpenGL Error: Shader Compile Error: " << infoLog << std::endl;
 		glfwSetWindowShouldClose(Game::GetWindow(), GL_TRUE);
 	}

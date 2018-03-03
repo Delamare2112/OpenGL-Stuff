@@ -10,7 +10,7 @@
 
 struct Color
 {
-	float r, b, g;
+	float r{}, b{}, g{};
 	float a = 1.f;
 };
 
@@ -25,7 +25,7 @@ enum GameState
 class Game
 {
 private:
-	Game() {}
+	Game() = default;
 	static GLFWwindow* window;
 	static GameState state;
 	static GLfloat previousTime;

@@ -10,7 +10,7 @@ private:
 	bool inited;
 	std::vector<std::pair<GLuint, const GLchar*>> textures;
 public:
-	Shader();
+	Shader() = default;
 	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);
 	bool Create(const GLchar* vertexPath, const GLchar* fragmentPath);
 	void AddTexture(const GLchar* imagePath, const GLchar* uniformString);

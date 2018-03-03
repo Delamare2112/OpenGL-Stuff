@@ -17,7 +17,7 @@ template<typename T>
 class PackedDynamicArray {
 private:
     struct Node {
-        bool valid;
+        bool valid{};
         T value;
         Node() {valid = false; value = T();}
         Node(bool valid, T val) {this->valid = valid; value = val;}
@@ -27,7 +27,7 @@ private:
     };
 
     std::queue<size_t> emptySlots;
-    size_t packSize, capacity, size, tailNodeIndex, headNodeIndex;
+    size_t packSize{}, capacity, size{}, tailNodeIndex{}, headNodeIndex{};
     Node* array;
 public:
     class Iterator {
@@ -77,7 +77,7 @@ public:
             Add(i);
     }
 
-    PackedDynamicArray(size_t initCapacity = 30) {
+    explicit PackedDynamicArray(size_t initCapacity = 30) {
         array = new Node[initCapacity];
         packSize = 0;
         size = 0;
@@ -143,7 +143,7 @@ public:
 
 private:
     void ReallocateWithSize(size_t size) {
-        Node* a = new Node[size];
+        auto* a = new Node[size];
         std::copy(array, array + capacity, a);
         capacity = size;
         delete [] array;
