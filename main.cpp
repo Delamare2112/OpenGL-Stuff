@@ -60,7 +60,7 @@ int main()
 	rect->model = glm::translate(rect->model, glm::vec3(-1.3f,  1.0f, -1.5f));
 	rect->model = glm::rotate(rect->model, glm::radians(20.f * i), glm::vec3(1.f, 0.3f, 0.5f));
 
-    (new Camera())->transform->SetPosition(glm::vec3(0.f, 0.f, 3.f));
+    (new Camera())->transform.position = (glm::vec3(0.f, 0.f, 3.f));
 
 	Game::SetClearColor({0.2f, 0.3f, 0.3f, 1.f});
 

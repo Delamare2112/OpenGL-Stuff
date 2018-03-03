@@ -1,21 +1,19 @@
 #include "Camera.hpp"
-#include "CameraTransform.hpp"
 
 Camera* Camera::currentCamera = nullptr;
 
 Camera::Camera()
+	: Entity(true)
 {
-    transform = new(transform) CameraTransform(this);
     front = glm::vec3(0.0f, 0.0f, -1.0f);
     view = glm::mat4x4();
 	currentCamera = this;
 	SetFOV(45.f);
-    transform->SetPosition(glm::vec3(0, 0, 0));
 }
 
-void Camera::UpdatePosition(const glm::vec3 newPosition)
+void Camera::Tick()
 {
-    view = glm::lookAt(newPosition, newPosition + front, Transform::up);
+    view = glm::lookAt(transform.position, transform.position + front, Transform::up);
 }
 
 void Camera::SetFOV(const float& newFOV)

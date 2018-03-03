@@ -49,7 +49,7 @@ void FPSInput::Tick()
     glfwPollEvents();
     const glm::vec3& cameraFront = Camera::currentCamera->front;
 
-    glm::vec3 camPos = Camera::currentCamera->transform->GetPosition();
+    glm::vec3 camPos = Camera::currentCamera->transform.position;
 
     const float speed = movementSpeed * Game::deltaTime;
 
@@ -61,6 +61,6 @@ void FPSInput::Tick()
         camPos -= glm::normalize(glm::cross(cameraFront, Transform::up)) * speed;
     if (glfwGetKey(Game::GetWindow(), GLFW_KEY_D) == GLFW_PRESS)
         camPos += glm::normalize(glm::cross(cameraFront, Transform::up)) * speed;
-    Camera::currentCamera->transform->SetPosition(camPos);
+    Camera::currentCamera->transform.position = camPos;
 }
 

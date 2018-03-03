@@ -18,7 +18,8 @@ public:
 
 	static Camera* currentCamera;
 
-	void UpdatePosition(glm::vec3 newPosition);
+	void Tick() override;
+
 	void SetFOV(const float& newFOV);
 
 	const glm::mat4& getProjection() const;

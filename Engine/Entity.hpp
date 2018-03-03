@@ -11,9 +11,8 @@ private:
 	std::vector<Component*> components;
 protected:
 	Entity(bool shouldTick=false);
-    Entity(Transform* nondefaultTransform, bool shouldTick=false);
 public:
-	Transform* transform;
+	Transform transform;
 
 	virtual ~Entity();
 	static PackedDynamicArray<Entity*> entities;
