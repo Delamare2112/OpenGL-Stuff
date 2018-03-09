@@ -35,8 +35,7 @@ GLuint Shader::CompileAndAttachShader(GLuint shaderType, const GLchar* source)
 
 void Shader::AddTexture(const GLchar* imagePath, const GLchar* uniformString)
 {
-	textures.emplace_back(0, uniformString);
-	std::pair<GLuint, const GLchar*>& texture = textures.back();
+	std::pair<GLuint, const GLchar*>& texture = textures.emplace_back(0, uniformString);
 	// Texture
 	glGenTextures(1, &texture.first);
 	glBindTexture(GL_TEXTURE_2D, texture.first);
@@ -89,8 +88,8 @@ bool Shader::Create(const GLchar *vertexPath, const GLchar *fragmentPath)
 	std::ifstream fragmentStream(fragmentPath, std::ios::in | std::ios::binary | std::ios::ate);
 	std::string vertexString, fragmentString;
 
-	vertexString.resize(vertexStream.tellg());
-	fragmentString.resize(fragmentStream.tellg());
+	vertexString.resize(static_cast<unsigned long>(vertexStream.tellg()));
+	fragmentString.resize(static_cast<unsigned long>(fragmentStream.tellg()));
 
 	vertexStream.seekg(0, std::ios::beg);
 	fragmentStream.seekg(0, std::ios::beg);
@@ -111,9 +110,8 @@ bool Shader::Create(const GLchar *vertexPath, const GLchar *fragmentPath)
 	if(!linkStatus)
 	{
 		GLchar infoLog[512];
-		glGetProgramInfoLog(program, 512, NULL, infoLog);
+		glGetProgramInfoLog(program, 512, nullptr, infoLog);
 		std::cout << "OpenGL Error: Shader Link Error: " << infoLog << std::endl;
-//		glfwSetWindowShouldClose(Game::GetWindow(), GL_TRUE);
 		return false;
 	}
 

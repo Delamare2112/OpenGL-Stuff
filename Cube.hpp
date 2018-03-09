@@ -2,6 +2,7 @@
 
 #include "Engine/Entity.hpp"
 #include "Engine/Shader.hpp"
+#include "Engine/Material.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 class Cube : public Entity
@@ -13,15 +14,15 @@ private:
 	GLuint VAO;
 	GLuint EBO;
 
-
 	int viewLoc;
 	int modelLoc;
 	int projectionLoc;
 
 public:
 	Cube();
-	virtual ~Cube();
+    ~Cube() override;
 	glm::mat4 model;
 	Shader* shader;
+	Material material;
 	void Tick() override;
 };

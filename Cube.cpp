@@ -77,6 +77,10 @@ Cube::Cube()
 		glEnableVertexAttribArray(1);
 
 	glBindVertexArray(0);
+
+    shader = &Game::shaderLibrary["HappyColors"];
+    material.shader = shader->GetProgram();
+    material.SetUniform("ourColor", 0.5f, 0.f, 0.f, 0.f);
 }
 
 void Cube::Tick()
@@ -96,6 +100,7 @@ void Cube::Tick()
 
 	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(Camera::currentCamera->getView()));
 	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(Camera::currentCamera->getProjection()));
+    material.Apply();
 
 //	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
