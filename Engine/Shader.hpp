@@ -1,6 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 #include <vector>
+#include "Mesh.h"
 
 class Shader
 {
@@ -10,8 +11,11 @@ private:
 	bool inited;
 	std::vector<std::pair<GLuint, const GLchar*>> textures;
 public:
+	std::set<Mesh*> referencedMeshes;
+
 	Shader() = default;
 	Shader(const GLchar* vertexPath, const GLchar* fragmentPath);
+
 	bool Create(const GLchar* vertexPath, const GLchar* fragmentPath);
 	void AddTexture(const GLchar* imagePath, const GLchar* uniformString);
 	void ActivateTextures() const;

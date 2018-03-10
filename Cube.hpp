@@ -3,6 +3,7 @@
 #include "Engine/Entity.hpp"
 #include "Engine/Shader.hpp"
 #include "Engine/Material.h"
+#include "Engine/Renderer.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 class Cube : public Entity
@@ -24,5 +25,6 @@ public:
 	glm::mat4 model;
 	Shader* shader;
 	Material material;
+	Renderer* renderer;
 	void Tick() override;
 };

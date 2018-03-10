@@ -2,14 +2,22 @@
 
 #include <vector>
 #include <functional>
-#include "Shader.hpp"
+#include <glm/detail/type_mat.hpp>
+#include <unordered_set>
+#include <set>
+
+class Shader;
 
 class Material
 {
 private:
     std::unordered_map<int, std::function<void(void)>> actions;
+	Shader* shader;
 public:
-    uint shader;
+	std::set<glm::mat4*> referencedTransforms;
+
+	void SetShader(Shader* shader);
+	Shader* GetShader() const;
     void Apply();
     void SetUniform(const char* name, float x);
     void SetUniform(const char* name, float x, float y);

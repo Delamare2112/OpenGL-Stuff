@@ -37,6 +37,8 @@ public:
 
 	static std::vector<std::function<void()>> Ticks;
 	static std::unordered_map<std::string, Shader> shaderLibrary;
+	static std::unordered_map<std::string, Mesh> meshLibrary;
+	static std::unordered_map<std::string, Material> materialLibrary;
 
 	static GLFWwindow*const GetWindow();
 	static const GameState GetState();

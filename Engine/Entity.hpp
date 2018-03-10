@@ -32,6 +32,6 @@ public:
 	template<class T>
 	T* AddComponent()
 	{
-		return components.emplace_back(new T(this));
+		return (T*)(components.emplace_back(static_cast<Component*>(new T(this))));
 	}
 };

@@ -5,7 +5,9 @@ class Component
 {
 protected:
     Entity* owner;
-	Component(Entity* owner, bool shouldTick=false);
+
+	explicit Component(Entity* owner, bool shouldTick=false);
+
 public:
 	virtual void Tick();
 };
