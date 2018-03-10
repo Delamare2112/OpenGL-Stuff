@@ -2,8 +2,6 @@
 
 #include <string>
 #include <GL/glew.h>
-#include <glm/detail/type_mat.hpp>
-#include <vector>
 #include <set>
 #include "Material.h"
 
@@ -16,7 +14,6 @@ private:
 	GLuint VAO;
 	GLuint EBO;
 	bool ready;
-	std::string path;
 public:
 	std::set<Material*> referencedMaterials;
 	uint numIndicies;

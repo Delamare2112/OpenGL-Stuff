@@ -3,7 +3,6 @@
 #include <vector>
 #include <functional>
 #include <glm/detail/type_mat.hpp>
-#include <unordered_set>
 #include <set>
 
 class Shader;

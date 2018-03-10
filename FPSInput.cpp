@@ -9,7 +9,9 @@ FPSInput::FPSInput()
     previousMouseX = Game::width / 2;
     previousMouseY = Game::height / 2;
 
-//    glfwSetInputMode(Game::GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+#ifndef DEBUG
+    glfwSetInputMode(Game::GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+#endif
     glfwSetCursorPosCallback(Game::GetWindow(), FPSInput::MouseCallback);
 
     if (currentHandler == nullptr)

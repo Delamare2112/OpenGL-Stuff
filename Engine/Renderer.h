@@ -6,11 +6,8 @@
 
 class Renderer : public Component
 {
-private:
-//	Mesh* mesh;
-//	Material* material;
 public:
-	explicit Renderer(Entity* owner, bool shouldTick=false);
+	explicit Renderer(Entity *owner);
 
 	void Init(Mesh* mesh, Material* material);
 };
