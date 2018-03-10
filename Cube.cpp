@@ -5,10 +5,11 @@
 #include <glm/gtc/type_ptr.hpp>
 
 Cube::Cube()
-	: Entity(true)
+	: Entity(true),
+	  materialInstance(Game::materialLibrary["default"])
 {
 	renderer = AddComponent<Renderer>();
-	renderer->Init(&Game::meshLibrary["cube"], &Game::materialLibrary["default"]);
+	renderer->Init(&Game::meshLibrary["cube"], &materialInstance);
 }
 
 void Cube::Tick()
