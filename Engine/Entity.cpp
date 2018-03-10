@@ -11,6 +11,8 @@ Entity::Entity(bool shouldTick)
 
 Entity::~Entity()
 {
+	for (Component* component : components)
+		delete component;
 	if(Game::GetState() != GameState::closing)
 		entities.RemoveAt(iid);
 }
