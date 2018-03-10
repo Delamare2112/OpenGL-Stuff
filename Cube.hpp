@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine/Entity.hpp"
-#include "Engine/Renderer.h"
+#include "Engine/Renderer.hpp"
 
 class Cube : public Entity
 {

@@ -1,4 +1,4 @@
-#include "Renderer.h"
+#include "Renderer.hpp"
 #include "Shader.hpp"
 #include "Entity.hpp"
 

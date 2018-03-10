@@ -19,7 +19,7 @@ set(SOURCE_FILES
         Cube.cpp
         Cube.hpp
         Triangle.cpp
-        Triangle.hpp Engine/Camera.cpp Engine/Camera.hpp Engine/Transform.hpp Engine/Transform.cpp FPSInput.cpp FPSInput.h Engine/Material.cpp Engine/Material.h Engine/Mesh.cpp Engine/Mesh.h Engine/Renderer.cpp Engine/Renderer.h)
+        Triangle.hpp Engine/Camera.cpp Engine/Camera.hpp Engine/Transform.hpp Engine/Transform.cpp FPSInput.cpp FPSInput.h Engine/Material.cpp Engine/Material.hpp Engine/Mesh.cpp Engine/Mesh.hpp Engine/Renderer.cpp Engine/Renderer.hpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lGLEW -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -lSOIL -lassimp")
 

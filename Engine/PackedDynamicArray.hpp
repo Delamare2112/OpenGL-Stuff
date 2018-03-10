@@ -3,7 +3,6 @@
 	Dynamically allocates when out of space.
 	Values keep their indices after a remove.
 	Values that are removed are quickly replaced before moved to the back of the collection.
-	Trevor Berninger - Apr 29, 2017
 */
 
 #pragma once
@@ -69,8 +68,7 @@ public:
     Iterator begin() const { return Iterator(this, headNodeIndex); }
     Iterator end() const { return Iterator(this, tailNodeIndex+1); }
 
-    PackedDynamicArray(PackedDynamicArray<T> const& other) {
-        //SDL_Log("Oh my");
+    PackedDynamicArray(const PackedDynamicArray<T>& other) {
         capacity = other.capacity;
         array = new Node[capacity];
         for(T i : other)
@@ -141,12 +139,23 @@ public:
         std::cout << '\n';
     }
 
+    PackedDynamicArray<T>& operator=(const PackedDynamicArray<T>& other) {
+        if (&other == this)
+            return *this;
+		capacity = other.capacity;
+		delete[] array;
+		array = new Node[capacity];
+		for(T i : other)
+			Add(i);
+        return *this;
+    }
+
 private:
     void ReallocateWithSize(size_t size) {
         auto* a = new Node[size];
         std::copy(array, array + capacity, a);
         capacity = size;
-        delete [] array;
+        delete[] array;
         array = a;
     }
 };

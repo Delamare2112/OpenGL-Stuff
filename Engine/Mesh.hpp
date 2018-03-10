@@ -3,7 +3,7 @@
 #include <string>
 #include <GL/glew.h>
 #include <set>
-#include "Material.h"
+#include "Material.hpp"
 
 class Mesh
 {
@@ -18,6 +18,7 @@ public:
 	std::set<Material*> referencedMaterials;
 	uint numIndicies;
 
+	Mesh() = default;
 	~Mesh();
 
 	bool Ready() const;

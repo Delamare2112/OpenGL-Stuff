@@ -1,6 +1,6 @@
 #include "Cube.hpp"
 #include "Engine/Camera.hpp"
-#include "Engine/Renderer.h"
+#include "Engine/Renderer.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 

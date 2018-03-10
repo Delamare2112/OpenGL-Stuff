@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Component.hpp"
-#include "Mesh.h"
-#include "Material.h"
+#include "Mesh.hpp"
+#include "Material.hpp"
 
 class Renderer : public Component
 {

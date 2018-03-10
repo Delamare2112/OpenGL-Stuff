@@ -1,5 +1,5 @@
 #include <GL/glew.h>
-#include "Material.h"
+#include "Material.hpp"
 #include "Shader.hpp"
 
 void Material::Apply()

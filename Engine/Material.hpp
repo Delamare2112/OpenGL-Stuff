@@ -15,6 +15,8 @@ private:
 public:
 	std::set<glm::mat4*> referencedTransforms;
 
+	Material() = default;
+
 	void SetShader(Shader* shader);
 	Shader* GetShader() const;
     void Apply();
