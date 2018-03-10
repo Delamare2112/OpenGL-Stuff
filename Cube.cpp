@@ -79,7 +79,7 @@ Cube::Cube()
 //
 //	glBindVertexArray(0);
 
-    shader = &Game::shaderLibrary["HappyColors"];
+    shader = &Game::shaderLibrary["default"];
 	renderer = AddComponent<Renderer>();
 	renderer->Init(&Game::meshLibrary["cube"], &Game::materialLibrary["default"]);
 }
@@ -110,7 +110,7 @@ void Cube::Tick()
 
 Cube::~Cube()
 {
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
-	glDeleteBuffers(1, &EBO);
+//	glDeleteVertexArrays(1, &VAO);
+//	glDeleteBuffers(1, &VBO);
+//	glDeleteBuffers(1, &EBO);
 }

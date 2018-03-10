@@ -11,18 +11,18 @@ class Cube : public Entity
 private:
 	static GLuint indices[];
 	static GLfloat verts[];
-	GLuint VBO; // OpenGL unsigned int, Vertex Buffer Object
-	GLuint VAO;
-	GLuint EBO;
-
-	int viewLoc;
-	int modelLoc;
-	int projectionLoc;
+//	GLuint VBO; // OpenGL unsigned int, Vertex Buffer Object
+//	GLuint VAO;
+//	GLuint EBO;
+//
+//	int viewLoc;
+//	int modelLoc;
+//	int projectionLoc;
 
 public:
 	Cube();
     ~Cube() override;
-	glm::mat4 model;
+//	glm::mat4 model;
 	Shader* shader;
 	Material material;
 	Renderer* renderer;

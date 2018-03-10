@@ -10,10 +10,10 @@ int main()
 	std::cout << "Sanity Check!\n";
 	assert(Game::Init(800, 600));
 
-	Shader& happyBox = Game::shaderLibrary["HappyColors"]; // Make new shader called HappyColors
-	happyBox.Create("Engine/texVertex.glsl", "Engine/texFragment.glsl"); // Create the new shader
-	happyBox.AddTexture("container.jpg", "ourTexture1"); // Add some textures
-	happyBox.AddTexture("awesomeface.png", "ourTexture2");
+//	Shader& happyBox = Game::shaderLibrary["HappyColors"]; // Make new shader called HappyColors
+//	happyBox.Create("Engine/texVertex.glsl", "Engine/texFragment.glsl"); // Create the new shader
+//	happyBox.AddTexture("container.jpg", "ourTexture1"); // Add some textures
+//	happyBox.AddTexture("awesomeface.png", "ourTexture2");
 
 	Shader& defaultShader = Game::shaderLibrary["default"];
 	defaultShader.Create("Engine/defaultVertexShader.glsl", "Engine/uniformColoredFragmentShader.glsl");
@@ -70,6 +70,7 @@ int main()
 	{
 		Game::Tick();
 		input.Tick();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear buffer and fill with ClearColor
 		for(std::pair<std::string, Shader> shader : Game::shaderLibrary)
 		{
 			shader.second.Use();
@@ -94,7 +95,6 @@ int main()
 		}
 		glBindVertexArray(0);
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear buffer and fill with ClearColor
 		glfwSwapBuffers(Game::GetWindow());
 	}
 	Game::Exit();

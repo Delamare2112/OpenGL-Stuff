@@ -11,7 +11,7 @@ class Mesh
 {
 private:
 	GLuint* indices;
-	GLfloat* verts;
+	float *verts;
 	GLuint VBO; // OpenGL unsigned int, Vertex Buffer Object
 	GLuint VAO;
 	GLuint EBO;
@@ -20,6 +20,8 @@ private:
 public:
 	std::set<Material*> referencedMaterials;
 	uint numIndicies;
+
+	~Mesh();
 
 	bool Ready() const;
 	bool Init(std::string path);
